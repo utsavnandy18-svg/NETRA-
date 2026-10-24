@@ -1,4 +1,5 @@
 from pydantic_settings import BaseSettings
+from pydantic import Field, AliasChoices
 
 class Settings(BaseSettings):
     app_name: str = "CrimeNet AI"
@@ -6,7 +7,7 @@ class Settings(BaseSettings):
     secret_key: str
     
     neo4j_uri: str
-    neo4j_user: str
+    neo4j_user: str = Field(default="8ca13724", validation_alias=AliasChoices("neo4j_user", "NEO4J_USER", "neo4j_username", "NEO4J_USERNAME"))
     neo4j_password: str
     
     mongodb_url: str
